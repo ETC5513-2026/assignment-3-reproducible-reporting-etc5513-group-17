@@ -20,7 +20,15 @@ editor: visual
 
 # Executive Summary
 
+This report examines the use of public transport in Victoria to identify the most popular modes and the areas where investment is likely to have the most impact. It combines a monthly statewide patronage dataset with the most recent FY2024–25 annual station-entry dataset for Melbourne metropolitan train stations. The analysis will compare demand between modes of transport and will highlight the stations with the highest levels of passenger activity. The aim is to enable practical investment decisions that enhance capacity, reliability and passenger experience in the areas of highest demand.
+
 # Introduction
+
+Public transport is an important part of Victoria’s mobility network, connecting people to work, education, health care and other day-to-day activities. It is important to understand where the system is most heavily used as the population, commuting patterns and service expectations continue to change. This report looks at two related questions: which modes of public transport carry the most passengers in Victoria, and where investment should be directed in the metropolitan train network.
+
+To answer these questions, the report uses two datasets. The first is a monthly record of boardings across the main public transport modes in Victoria, including metropolitan and regional train, tram, bus and coach services. The second is an annual record of passenger entries at metropolitan train stations in Melbourne based on the latest FY2024–25 data. These datasets allow a system-wide look at mode usage and a station-level look at where demand is concentrated.
+
+The report is designed to identify patterns to inform infrastructure upgrades, service planning and network prioritisation. The report will assist in identifying where public transport investment is needed most by comparing patronage across modes and looking at the busiest train stations.
 
 # Methodology
 
