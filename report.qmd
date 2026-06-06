@@ -18,4 +18,74 @@ execute:
 editor: visual
 ---
 
-## 
+# Executive Summary
+
+# Introduction
+
+# Methodology
+
+```{r setup}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(janitor)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(scales)
+```
+
+```{r load-data}
+#| label: load-data
+monthly_raw <- read_csv("data/raw/74174b02-76bc-4d10-ae7c-401d90ef033c.csv")
+stations_raw <- read_csv("data/raw/_published_public_transport_annual_metropolitan_train_station_entries_annual_metropolitan_train_station_entries_fy_2024_2025.csv")
+```
+
+```{r clean-monthly}
+#| label: clean-monthly
+monthly_clean <- monthly_raw |>
+  clean_names() |>
+  mutate(across(c(metropolitan_train, metropolitan_tram, metropolitan_bus,
+                  regional_train, regional_coach, regional_bus),
+                ~ parse_number(as.character(.)))) |>
+  pivot_longer(
+    cols = c(metropolitan_train, metropolitan_tram, metropolitan_bus,
+             regional_train, regional_coach, regional_bus),
+    names_to = "mode",
+    values_to = "boardings"
+  )
+```
+
+```{r clean-stations}
+#| label: clean-stations
+stations_clean <- stations_raw |>
+  clean_names() |>
+  filter(fin_year == "FY24-25") |>
+  mutate(across(c(pax_annual, pax_weekday, pax_norm_weekday, pax_sch_hol_weekday,
+                  pax_saturday, pax_sunday, pax_pre_am_peak, pax_am_peak,
+                  pax_interpeak, pax_pm_peak, pax_pm_late),
+                ~ parse_number(as.character(.))))
+```
+
+```{r save-processed}
+#| label: save-processed
+write_csv(monthly_clean, "data/processed/monthly_clean.csv")
+write_csv(stations_clean, "data/processed/stations_clean.csv")
+```
+
+```{r figure-1, fig.cap="Total Victorian public transport boardings by mode across the monthly dataset."}
+
+```
+
+```{r table-1}
+
+```
+
+# Results
+
+# Discussion, Conclusion and Recommendations
+
+# References
+
+1.  Monthly public transport patronage by mode. Victorian open data. [link](https://opendata.transport.vic.gov.au/dataset/monthly-public-transport-patronage-by-mode).
+2.  Annual metropolitan train station patronage (station entries). Victorian open data. [link](https://opendata.transport.vic.gov.au/dataset/annual-metropolitan-train-station-patronage-station-entries).
