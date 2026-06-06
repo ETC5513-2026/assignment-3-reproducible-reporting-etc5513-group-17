@@ -1,9 +1,9 @@
 ---
 title: "Which Public Transport Modes Are Most Used in Victoria and Where Should Investment Be Focused?"
 author:
-  - Vishal Sampath
-  - Team Member 2
-  - Team Member 3
+  - Vishal Sampath Kumar
+  - Rikhitha Varma
+  - Socheaneath Hour
 format:
   html:
     toc: true
@@ -73,12 +73,32 @@ write_csv(monthly_clean, "data/processed/monthly_clean.csv")
 write_csv(stations_clean, "data/processed/stations_clean.csv")
 ```
 
-```{r figure-1, fig.cap="Total Victorian public transport boardings by mode across the monthly dataset."}
-
+```{r table-1}
+#| label: mode-summary-table
+mode_summary <- monthly_clean |>
+  group_by(mode) |>
+  summarise(total_boardings = sum(boardings, na.rm = TRUE), .groups = "drop") |>
+  arrange(desc(total_boardings))
+mode_summary
 ```
 
-```{r table-1}
+```{r table-2}
+#| label: top-stations-table
+top_stations <- stations_clean |>
+  arrange(desc(pax_annual)) |>
+  select(stop_name, pax_annual, pax_weekday, pax_saturday, pax_sunday) |>
+  slice_head(n = 10)
+top_stations
+```
 
+```{r figure-1, fig.cap="Total Victorian public transport boardings by mode across the monthly dataset."}
+#| label: mode-plot
+#| fig-cap: "Total public transport boardings by mode across the monthly Victorian dataset."
+ggplot(mode_summary, aes(x = reorder(mode, total_boardings), y = total_boardings, fill = mode)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_y_continuous(labels = comma) +
+  labs(x = NULL, y = "Total boardings")
 ```
 
 # Results
