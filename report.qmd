@@ -4,13 +4,18 @@ author:
   - Vishal Sampath Kumar
   - Rikhitha Varma
   - Socheaneath Hour
+date: today
+date-format: long
 format:
   html:
     toc: true
     number-sections: true
+    theme: cosmo
   pdf:
     toc: true
     number-sections: true
+    geometry: "margin=2.5cm"
+    mainfont: "Georgia"
 execute:
   echo: false
   warning: false
@@ -31,6 +36,18 @@ To answer these questions, the report uses two datasets. The first is a monthly 
 The report is designed to identify patterns to inform infrastructure upgrades, service planning and network prioritisation. The report will assist in identifying where public transport investment is needed most by comparing patronage across modes and looking at the busiest train stations.
 
 # Methodology
+
+## Data source
+
+This report uses two datasets sourced from the Victorian Government's open data portal, both published by the Department of Transport and Planning and licensed under Creative Commons Attribution 4.0 (CC by 4.0). The first dataset contains monthly public transport boardings across six modes like metropolitan train, metropolitan tram, metropolitan bus, regional train, regional bus and regional coach, covering the period from 2018 to 2025. This dataset allows us to compare how much each mode is used across Victoria and how usage has changed over time. The second dataset contains annual station entries for all Melbourne metropolitan train stations broken down by day type. This dataset helps identify which stations carry the most passengers and where investment is most needed.
+
+## Data preparation
+
+The data was loaded and processed in R using the `tidyverse` and `janitor` packages. For the monthly dataset, numeric columns were parsed to remove any formatting characters and the data was reshaped from wide to long format so that each row represents one mode in one month. For the station dataset, the data was filtered to the 2024-2025 financial year and numeric columns were cleaned in the same way. Both cleaned datasets were saved to the `data/processed/` folder to ensure the analysis is fully reproducible.
+
+## Analysis
+
+To compare patronage across modes, total boardings were summed by mode across the full dataset. As shown in @tbl-mode-summary, metropolitan train recorded the highest total boardings over the study period followed by metropolitan tram and metropolitan bus. Regional services made up a much smaller share of total patronage. To identify the busiest stations in the metropolitan train network, stations were ranked by total annual entries for 2024-2025. @tbl-top-stations shows the top busiest stations with Flinder Street, Southern Cross and Melbourne Central recording significantly higher passenger volumes than all other stations. A bar chart summarising total boardings by mode is presented in @fig-mode-plot to provide a visual comparison across the network.
 
 ```{r setup}
 #| label: setup
@@ -140,24 +157,19 @@ monthly_clean |>
 
 # Results
 
-The results show clear differences in how Victorians use public transport across different modes. Metropolitan train recorded the highest total boardings over the study period, followed by metropolitan tram and metropolitan bus. Regional services and including regional train, regional bus and regional coach, made up a much smaller share of total patronage. As shown in @fig-trends, all modes experienced a sharp drop in boardings around 2020 which lines up with COVID-19 lockdowns and restrictions in Victoria. After 2020, patronage gradually increased across all modes and though the recovery has been slow and uneven. Metropolitan train and tram showed stronger recovery compared to bus and regional services. As of 2024-25, none of the modes have returned to their pre-COVID levels which suggests that travel behaviour in Victoria has changed since the pandemic. 
+The results show clear differences in how Victorians use public transport across different modes. Metropolitan train recorded the highest total boardings over the study period, followed by metropolitan tram and metropolitan bus. Regional services and including regional train, regional bus and regional coach, made up a much smaller share of total patronage. As shown in @fig-trends, all modes experienced a sharp drop in boardings around 2020 which lines up with COVID-19 lockdowns and restrictions in Victoria. After 2020, patronage gradually increased across all modes and though the recovery has been slow and uneven. Metropolitan train and tram showed stronger recovery compared to bus and regional services. As of 2024-25, none of the modes have returned to their pre-COVID levels which suggests that travel behaviour in Victoria has changed since the pandemic.
 
-# Discussion 
+# Discussion
 
-The findings show that Victoria's public transport network is heavily concentrated around metropolitan train and tram services. This is not surprising given that Melbourne has a dense inner-city network and a large computer population. However, the data also highlights that the network has not fully recovered from the impact of COVID-19 which raises questions about whether pre-pandemic service levels are still appropriate for current demand. The station-level data shows that a small number of stations, particularly Flinders Street, Southern Cross and Melbourne Central, handles a disproportionately large share of passenger entries. This puts pressure on these stations and the lines that connect to them. 
+The findings show that Victoria's public transport network is heavily concentrated around metropolitan train and tram services. This is not surprising given that Melbourne has a dense inner-city network and a large computer population. However, the data also highlights that the network has not fully recovered from the impact of COVID-19 which raises questions about whether pre-pandemic service levels are still appropriate for current demand. The station-level data shows that a small number of stations, particularly Flinders Street, Southern Cross and Melbourne Central, handles a disproportionately large share of passenger entries. This puts pressure on these stations and the lines that connect to them.
 
-# Conclusion 
+# Conclusion
 
-Overall, metropolitan train is the most used public transport mode in Victoria, with tram coming in second. Demand is heavily concentrated at a few inner-city stations and patronage across all modes is still below pre-COVID levels as of 2024-2025. These findings suggest that investment should be focused on the modes and stations that carry the most passengers rather than spreading resources evenly across the network. 
-
+Overall, metropolitan train is the most used public transport mode in Victoria, with tram coming in second. Demand is heavily concentrated at a few inner-city stations and patronage across all modes is still below pre-COVID levels as of 2024-2025. These findings suggest that investment should be focused on the modes and stations that carry the most passengers rather than spreading resources evenly across the network.
 
 # Recommendations
 
-Based on the analysis, we recommend the following:
-1. **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbrourne Central, where passenger volumes are significantly higher than other stations on the network. 
-2. **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace. 
-3. **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions. 
-
+Based on the analysis, we recommend the following: 1. **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbrourne Central, where passenger volumes are significantly higher than other stations on the network. 2. **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace. 3. **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions.
 
 # References
 
