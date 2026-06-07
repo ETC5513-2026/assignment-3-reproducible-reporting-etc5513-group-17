@@ -12,7 +12,7 @@ format:
     toc: true
     number-sections: true
 execute:
-  echo: true
+  echo: false
   warning: false
   message: false
 editor: visual
@@ -111,7 +111,53 @@ ggplot(mode_summary, aes(x = reorder(mode, total_boardings), y = total_boardings
 
 # Results
 
-# Discussion, Conclusion and Recommendations
+```{r fig-trends}
+#| label: fig-trends
+#| fig-cap: "Monthly public transport boardings by mode in Victoria (2018–2025), showing the sharp decline during COVID-19 in 2020 and the subsequent recovery. Metropolitan train remains the dominant mode throughout the period."
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4
+
+monthly_clean <- read_csv("data/processed/monthly_clean.csv")
+
+monthly_clean |>
+  mutate(
+    date = make_date(year, month, 1),
+    mode = str_replace_all(mode, "_", " ") |> str_to_title()
+  ) |>
+  ggplot(aes(x = date, y = boardings, colour = mode)) +
+  geom_line(linewidth = 0.8) +
+  scale_y_continuous(labels = comma) +
+  scale_colour_brewer(palette = "Dark2") +
+  labs(
+    x      = "Date",
+    y      = "Monthly Boardings",
+    colour = "Mode"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom")
+```
+
+# Results
+
+The results show clear differences in how Victorians use public transport across different modes. Metropolitan train recorded the highest total boardings over the study period, followed by metropolitan tram and metropolitan bus. Regional services and including regional train, regional bus and regional coach, made up a much smaller share of total patronage. As shown in @fig-trends, all modes experienced a sharp drop in boardings around 2020 which lines up with COVID-19 lockdowns and restrictions in Victoria. After 2020, patronage gradually increased across all modes and though the recovery has been slow and uneven. Metropolitan train and tram showed stronger recovery compared to bus and regional services. As of 2024-25, none of the modes have returned to their pre-COVID levels which suggests that travel behaviour in Victoria has changed since the pandemic. 
+
+# Discussion 
+
+The findings show that Victoria's public transport network is heavily concentrated around metropolitan train and tram services. This is not surprising given that Melbourne has a dense inner-city network and a large computer population. However, the data also highlights that the network has not fully recovered from the impact of COVID-19 which raises questions about whether pre-pandemic service levels are still appropriate for current demand. The station-level data shows that a small number of stations, particularly Flinders Street, Southern Cross and Melbourne Central, handles a disproportionately large share of passenger entries. This puts pressure on these stations and the lines that connect to them. 
+
+# Conclusion 
+
+Overall, metropolitan train is the most used public transport mode in Victoria, with tram coming in second. Demand is heavily concentrated at a few inner-city stations and patronage across all modes is still below pre-COVID levels as of 2024-2025. These findings suggest that investment should be focused on the modes and stations that carry the most passengers rather than spreading resources evenly across the network. 
+
+
+# Recommendations
+
+Based on the analysis, we recommend the following:
+1. **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbrourne Central, where passenger volumes are significantly higher than other stations on the network. 
+2. **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace. 
+3. **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions. 
+
 
 # References
 
