@@ -169,7 +169,15 @@ Overall, metropolitan train is the most used public transport mode in Victoria, 
 
 # Recommendations
 
+<<<<<<< HEAD
 Based on the analysis, we recommend the following: 1. **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbrourne Central, where passenger volumes are significantly higher than other stations on the network. 2. **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace. 3. **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions.
+=======
+Based on the analysis, we recommend the following:
+
+1.  **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbrourne Central, where passenger volumes are significantly higher than other stations on the network.
+2.  **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace.
+3.  **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions.
+>>>>>>> 7d3c448ebaece43c43086add4c09f7ace6331108
 
 # References
 
