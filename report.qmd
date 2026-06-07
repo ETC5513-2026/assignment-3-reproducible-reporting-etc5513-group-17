@@ -46,7 +46,11 @@ This report uses two datasets sourced from the Victorian Government's open data 
 
 ## Data preparation
 
-The data was loaded and processed in R using the `tidyverse` and `janitor` packages. For the monthly dataset, numeric columns were parsed to remove any formatting characters and the data was reshaped from wide to long format so that each row represents one mode in one month. For the station dataset, the data was filtered to the 2024-2025 financial year and numeric columns were cleaned in the same way. Both cleaned datasets were saved to the `data/processed/` folder to ensure the analysis is fully reproducible.
+All the analysis was performed in R with the use of tidyverse, janitor, readr and dplyr packages. The raw monthly patronage data was first imported and cleaned by standardizing variable names with the clean_names() function. The numbers of passengers were formatted with commas, and this was removed using the parsing functions to ensure that calculations would be performed correctly. The data is presented in an excel spreadsheet that was originally wide format, containing one column for each transport mode. The data were manipulated to create new data in a long format with each row representing one transportation mode for one month, for comparison and for visualisation.
+
+The same cleaning was performed on the station-entry data set. Variable names were harmonised, passenger data were converted to numeric format, and all data were subsetted to include only those for FY2024–25. This guaranteed consistency in the analysis, and permitted an analysis of the latest station demand patterns. Missing values and formatting inconsistencies were checked before analysis to minimise data quality issues.
+
+Both datasets were cleaned and saved in the data/processed folder. Data processing enables improved data reproducibility by separating data processing from analysis and using the same cleaned data for all team members. The datasets produced were subsequently analysed to compile summary statistics, visualisations and rankings to aid the findings reported in this document.
 
 ## Analysis
 
@@ -147,7 +151,11 @@ ggplot(mode_summary, aes(x = reorder(mode, total_boardings), y = total_boardings
 
 # Results
 
-The results show clear differences in how Victorians use public transport across different modes. Metropolitan train recorded the highest total boardings over the study period, followed by metropolitan tram and metropolitan bus. Regional services and including regional train, regional bus and regional coach, made up a much smaller share of total patronage. As shown in @fig-trends, all modes experienced a sharp drop in boardings around 2020 which lines up with COVID-19 lockdowns and restrictions in Victoria. After 2020, patronage gradually increased across all modes and though the recovery has been slow and uneven. Metropolitan train and tram showed stronger recovery compared to bus and regional services. As of 2024-25, none of the modes have returned to their pre-COVID levels which suggests that travel behaviour in Victoria has changed since the pandemic.
+This analysis shows that there are significant variations in public transport use by Victorians. Rail continued to be the primary mode of public transport in Victoria, as evidenced by the highest total amount of people using the train network, as seen in Table @tbl-mode-summary and Figure @fig-mode-plot. The next most popular mode was the metropolitan tram system, and then followed the metropolitan bus system. The share of regional transport modes in total mode share of boardings was much less than the rest, indicating high population and travel density in metropolitan Melbourne.
+
+The station-level analysis also shows that the activity of passengers is highly skewed towards a small number of central city stations. The highest annual passenger numbers for Flinders Street, Southern Cross and Melbourne Central were seen consistently throughout the year (Table @tbl-top-stations). These stations serve as key hubs for interchanging passengers and are important to the broader transportation network.
+
+Figure @fig-trends illustrates the effect of the COVID-19 pandemic on the demand for public transport. Patronage on all transport modes suffered a marked drop in 2020 and settled back during the year. The patronage of metropolitan train and tram services have increased more strongly since the pandemic has started, but the service continues to be below pre-pandemic levels, indicating that travel behaviour and commuting patterns have altered over time.
 
 ```{r fig-trends}
 #| label: fig-trends
@@ -176,25 +184,29 @@ monthly_clean |>
   theme(legend.position = "bottom")
 ```
 
-
 # Discussion
 
-The findings show that Victoria's public transport network is heavily concentrated around metropolitan train and tram services. This is not surprising given that Melbourne has a dense inner-city network and a large commuter population. However, the data also highlights that the network has not fully recovered from the impact of COVID-19 which raises questions about whether pre-pandemic service levels are still appropriate for current demand. The station-level data shows that a small number of stations, particularly Flinders Street, Southern Cross and Melbourne Central, handles a disproportionately large share of passenger entries. This puts pressure on these stations and the lines that connect to them.
+The results highlight that public transport demand is skewed towards the metropolitan area, including within Melbourne's train system. Metropolitan train services are dominant, as they play an important role in commuting, education and business trips. The success of tram services is also evident and contributes to the provision of public transport, which is particularly important in cities with high population density where private transport may be less feasible.
+
+The results for the individual stations indicate that the most suitable station for investment should be the station seeing the greatest passenger demand. Patronage has been high at all three stations at Flinders Street, Southern Cross and Melbourne Central, which suggests that all three stations are essential nodes in the network. Bulk investments that seek to enhance accessibility, passenger flow, service frequency and the capacity of the infrastructure at these sites are likely to have a high number of users as beneficiaries.
+
+COVID-19 pandemic's long-term impact is also considered. Patronage has bounced back significantly since 2020, but is still not back to historical levels. This could be due to growing remote and hybrid working patterns, changes in travel habits and population movements. This means that future planning needs to take these trends in travel demand into account, and still build infrastructure that meets the demand and thus the requirements of the passengers.
 
 # Conclusion
 
-Overall, metropolitan train is the most used public transport mode in Victoria, with tram coming in second. Demand is heavily concentrated at a few inner-city stations and patronage across all modes is still below pre-COVID levels as of 2024-2025. These findings suggest that investment should be focused on the modes and stations that carry the most passengers rather than spreading resources evenly across the network.
+This study analyzed public transport usage throughout Victoria based on public transport boardings data from across the state provided on a monthly basis and metropolitan train station entry data. The results reveal that the mode of public transport being the most used is the metro train, followed by trams and buses. Passenger numbers are concentrated at a small number of stations around the centre of Melbourne, including Flinders Street, Southern Cross and Melbourne Central.
+
+In addition, the analysis highlights the substantial impact of COVID-19 and indicates that patronage is continuing to recover. These results indicate that the transport investment planning should focus on high-demand modes and locations, and be watched closely for transport pattern changes in the future. Investing in specific corridors with the highest passenger numbers will help to maximise the efficiency of the network, while providing a better passenger experience and contributing to sustainable transport growth in Victoria.
 
 # Recommendations
 
 Based on the analysis, we recommend the following:
 
-1. **Focus investment on high-demand stations** such as Flinders Street, Southern Cross and Melbourne Central, where passenger volumes are significantly higher than other stations on the network. 
+1.  **Focus investment on high-demand stations such as Flinders Street, Southern Cross and Melbourne Central**, where passenger volumes are significantly higher than other stations on the network. These stations serve as major transport hubs and play a critical role in connecting passengers across metropolitan Melbourne. Investments in station capacity, accessibility improvements, passenger amenities and crowd management measures would help improve the overall passenger experience while supporting future growth in demand.
 
-2. **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performace. 
+2.  **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performance. The analysis showed that metropolitan trains account for the largest share of public transport patronage, highlighting their importance within Victoria’s transport system. Enhancing service frequency, reducing delays and improving network reliability could encourage greater public transport usage and improve commuter satisfaction.
 
-3. **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions.
-
+3.  **Track patronage recovery over time** across all modes to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions. The results demonstrated a significant decline in patronage during the COVID-19 pandemic followed by a gradual recovery. Continued monitoring of passenger trends will allow transport authorities to identify long-term changes in travel behaviour and make evidence-based decisions regarding future service planning and infrastructure investment.
 
 # References
 
