@@ -16,6 +16,7 @@ format:
     number-sections: true
     geometry: "margin=2.5cm"
     mainfont: "Georgia"
+    fig-pos: "H"
 execute:
   echo: false
   warning: false
