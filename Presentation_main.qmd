@@ -1,0 +1,234 @@
+---
+title: "Public Transport Usage in Victoria"
+subtitle: "Which modes are most used, and where should investment be focused?"
+author:
+  - Vishal Sampath Kumar
+  - Rikhitha Varma
+  - Socheaneath Hour
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: fade
+    title-slide-attributes:
+      data-background-color: "#f7f9fb"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(janitor)
+library(readr)
+library(knitr)
+
+monthly_clean <- read_csv("data/processed/monthly_clean.csv")
+stations_clean <- read_csv("data/processed/stations_clean.csv")
+
+top_stations <- stations_clean |>
+  arrange(desc(pax_annual))
+
+mode_summary <- monthly_clean |>
+  group_by(mode) |>
+  summarise(total_boardings = sum(boardings))
+```
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(scales)
+library(stringr)
+
+monthly_clean <- read_csv("data/processed/monthly_clean.csv")
+
+mode_summary <- monthly_clean |>
+  group_by(mode) |>
+  summarise(total_boardings = sum(boardings, na.rm = TRUE), .groups = "drop")
+```
+
+# Problem Statement
+
+## Why is this important?
+
+-   Public transport is critical for mobility across Victoria.
+-   Government investment decisions should be based on actual demand.
+-   Understanding passenger behaviour helps improve:
+    -   Capacity
+    -   Reliability
+    -   Passenger experience
+
+## Research Questions
+
+1.  Which public transport modes are most used in Victoria?
+2.  Which train stations experience the highest demand?
+3.  Where should future investment be prioritised?
+
+# Datasets
+
+## Dataset 1
+
+Monthly Victorian public transport patronage
+
+-   2018–2025
+-   Metropolitan train
+-   Metropolitan tram
+-   Metropolitan bus
+-   Regional train
+-   Regional bus
+-   Regional coach
+
+## Dataset 2
+
+FY2024–25 Metropolitan Train Station Entries
+
+-   Passenger entries by station
+-   Melbourne metropolitan network
+-   Annual station-level demand
+
+# Data Preparation
+
+## Cleaning Steps
+
+-   Standardised column names
+-   Converted passenger counts to numeric values
+-   Removed formatting inconsistencies
+-   Checked missing values
+
+## Transformation
+
+Monthly patronage data:
+
+Wide format → Long format
+
+Benefits:
+
+-   Easier comparison across modes
+-   Better visualisation
+-   Improved reproducibility
+
+# Methodology
+
+## Mode Analysis
+
+-   Summed total boardings by transport mode
+-   Compared patronage across Victoria
+
+The monthly patronage dataset was aggregated to calculate the total number of boardings for each transport mode across the study period. This allowed us to identify which modes were used most frequently and compare their relative importance within Victoria's public transport network.
+
+## Station Analysis
+
+-   Ranked stations by annual passenger entries
+-   Identified highest-demand locations
+
+Station entry data was sorted and ranked according to annual passenger volumes. This analysis helped identify the busiest stations in Melbourne's metropolitan network and highlight locations where future infrastructure investment could provide the greatest benefit.
+
+## Visualisation
+
+-   Patronage by mode
+-   Monthly trends over time
+
+Visualisations were created using ggplot2 to communicate key patterns in the data. Bar charts were used to compare transport modes, while time-series plots were used to examine changes in patronage over time and assess the impact of events such as COVID-19.
+
+# Results: Transport Mode Usage
+
+## Key Finding
+
+Metropolitan Train is the most used transport mode in Victoria.
+
+Followed by:
+
+1.  Metropolitan Tram
+2.  Metropolitan Bus
+3.  Regional Services
+
+### Implication
+
+Investment in rail infrastructure has the greatest potential impact on overall network performance.
+
+# Results: Transport Mode Usage
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4.5
+#| out-width: "75%"
+
+mode_summary |>
+  mutate(mode = str_replace_all(mode, "_", " ") |> str_to_title()) |>
+  ggplot(aes(
+    x = reorder(mode, total_boardings),
+    y = total_boardings
+  )) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(labels = comma) +
+  labs(
+    x = NULL,
+    y = "Total Boardings"
+  ) +
+  theme_minimal(base_size = 16)
+```
+
+Metropolitan trains recorded the highest number of boardings, followed by metropolitan trams and buses. Regional transport modes accounted for a much smaller share of total patronage. These findings suggest that investment in metropolitan transport infrastructure would have the greatest impact on overall public transport users in Victoria.
+
+# Results: Busiest Stations
+
+## Top Stations
+
+-   Flinders Street
+-   Southern Cross
+-   Melbourne Central
+
+These stations recorded substantially higher passenger volumes than other stations in the network.
+
+## Implication
+
+These locations should be prioritised for capacity and infrastructure upgrades.
+
+```{r}
+top_stations |>
+  head(5) |>
+  select(stop_name, pax_annual) |>
+  knitr::kable()
+```
+
+# Results: Patronage Trends
+
+## COVID-19 Impact
+
+-   Significant drop in patronage during 2020
+-   Recovery observed across all modes
+-   Recovery remains incomplete
+
+## Key Insight
+
+Travel behaviour appears to have changed following the pandemic.
+
+```{r}
+monthly_clean |>
+  mutate(
+    date = make_date(year, month, 1),
+    mode = str_replace_all(mode, "_", " ") |> str_to_title()
+  ) |>
+  ggplot(
+    aes(
+      x = date,
+      y = boardings,
+      colour = mode
+    )
+  ) +
+  geom_line() +
+  theme_minimal()
+```
+
+Patronage across all transport modes fell dramatically during the COVID-19 period before gradually recovering. Metropolitan trains and trams consistently remained the most heavily used modes.
+
+## 
