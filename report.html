@@ -9,6 +9,7 @@
 <meta name="author" content="Vishal Sampath Kumar">
 <meta name="author" content="Rikhitha Varma">
 <meta name="author" content="Socheaneath Hour">
+<meta name="dcterms.date" content="2026-06-08">
 
 <title>Which Public Transport Modes Are Most Used in Victoria and Where Should Investment Be Focused?</title>
 <style>
@@ -26,41 +27,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -74,7 +40,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-8ffd5f67044e5306d9846f29df41dda5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -89,10 +55,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive Summary</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a>
+  <ul class="collapse">
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">3.1</span> Data source</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">3.2</span> Data preparation</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3.3</span> Analysis</a></li>
+  </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4</span> Results</a></li>
-  <li><a href="#discussion-conclusion-and-recommendations" id="toc-discussion-conclusion-and-recommendations" class="nav-link" data-scroll-target="#discussion-conclusion-and-recommendations"><span class="header-section-number">5</span> Discussion, Conclusion and Recommendations</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">5</span> Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations"><span class="header-section-number">7</span> Recommendations</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -116,6 +89,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 8, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -125,108 +104,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div style="page-break-after: always;"></div>
 <section id="executive-summary" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Executive Summary</h1>
+<p>This report examines the use of public transport in Victoria to identify the most popular modes and the areas where investment is likely to have the most impact. It combines a monthly statewide patronage dataset with the most recent FY2024–25 annual station-entry dataset for Melbourne metropolitan train stations. The analysis will compare demand between modes of transport and will highlight the stations with the highest levels of passenger activity. The aim is to enable practical investment decisions that enhance capacity, reliability and passenger experience in the areas of highest demand.</p>
 </section>
 <section id="introduction" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
+<p>Public transport is an important part of Victoria’s mobility network, connecting people to work, education, health care and other day-to-day activities. It is important to understand where the system is most heavily used as the population, commuting patterns and service expectations continue to change. This report looks at two related questions: which modes of public transport carry the most passengers in Victoria, and where investment should be directed in the metropolitan train network.</p>
+<p>To answer these questions, the report uses two datasets. The first is a monthly record of boardings across the main public transport modes in Victoria, including metropolitan and regional train, tram, bus and coach services. The second is an annual record of passenger entries at metropolitan train stations in Melbourne based on the latest FY2024–25 data. These datasets allow a system-wide look at mode usage and a station-level look at where demand is concentrated.</p>
+<p>The report is designed to identify patterns to inform infrastructure upgrades, service planning and network prioritisation. The report will assist in identifying where public transport investment is needed most by comparing patronage across modes and looking at the busiest train stations.</p>
 </section>
 <section id="methodology" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Methodology</h1>
+<section id="data-source" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-source"><span class="header-section-number">3.1</span> Data source</h2>
+<p>This report uses two datasets sourced from the Victorian Government’s open data portal, both published by the Department of Transport and Planning and licensed under Creative Commons Attribution 4.0 (CC by 4.0). The first dataset contains monthly public transport boardings across six modes like metropolitan train, metropolitan tram, metropolitan bus, regional train, regional bus and regional coach, covering the period from 2018 to 2025. This dataset allows us to compare how much each mode is used across Victoria and how usage has changed over time. The second dataset contains annual station entries for all Melbourne metropolitan train stations broken down by day type. This dataset helps identify which stations carry the most passengers and where investment is most needed.</p>
+</section>
+<section id="data-preparation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">3.2</span> Data preparation</h2>
+<p>All the analysis was performed in R with the use of tidyverse, janitor, readr and dplyr packages. The raw monthly patronage data was first imported and cleaned by standardizing variable names with the clean_names() function. The numbers of passengers were formatted with commas, and this was removed using the parsing functions to ensure that calculations would be performed correctly. The data is presented in an excel spreadsheet that was originally wide format, containing one column for each transport mode. The data were manipulated to create new data in a long format with each row representing one transportation mode for one month, for comparison and for visualisation.</p>
+<p>The same cleaning was performed on the station-entry data set. Variable names were harmonised, passenger data were converted to numeric format, and all data were subsetted to include only those for FY2024–25. This guaranteed consistency in the analysis, and permitted an analysis of the latest station demand patterns. Missing values and formatting inconsistencies were checked before analysis to minimise data quality issues.</p>
+<p>Both datasets were cleaned and saved in the data/processed folder. Data processing enables improved data reproducibility by separating data processing from analysis and using the same cleaned data for all team members. The datasets produced were subsequently analysed to compile summary statistics, visualisations and rankings to aid the findings reported in this document.</p>
+</section>
+<section id="analysis" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="analysis"><span class="header-section-number">3.3</span> Analysis</h2>
+<p>To compare patronage across modes, total boardings were summed by mode across the full dataset. As shown in <a href="#tbl-mode-summary" class="quarto-xref">Table&nbsp;1</a>, metropolitan train recorded the highest total boardings over the study period followed by metropolitan tram and metropolitan bus. Regional services made up a much smaller share of total patronage. To identify the busiest stations in the metropolitan train network, stations were ranked by total annual entries for 2024-2025. <a href="#tbl-top-stations" class="quarto-xref">Table&nbsp;2</a> shows the top busiest stations with Flinder Street, Southern Cross and Melbourne Central recording significantly higher passenger volumes than all other stations. A bar chart summarising total boardings by mode is presented in <strong>?@fig-mode-plot</strong> to provide a visual comparison across the network.</p>
+<p>The analysis was based on two Victorian public transport datasets: monthly patronage by mode and FY2024–25 metropolitan train station entries. The monthly data were cleaned by changing column names, changing passenger count numbers to numeric, and melting the dataset to long format to allow for consistent comparison of each transport mode. The station data were filtered to FY2024–25, and the passenger-entry variables were converted to numeric format. Summary totals were calculated to compare overall mode usage and the station dataset was ranked to identify the busiest metropolitan stations. Table <a href="#tbl-mode-summary" class="quarto-xref">Table&nbsp;1</a> shows a summary of total boardings by mode. Table <a href="#tbl-top-stations" class="quarto-xref">Table&nbsp;2</a> shows the busiest metro train stations. Figure <a href="#fig-mode-summary" class="quarto-xref">Figure&nbsp;1</a> visualises the total boardings by mode for comparison across the network.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/74174b02-76bc-4d10-ae7c-401d90ef033c.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>stations_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/_published_public_transport_annual_metropolitan_train_station_entries_annual_metropolitan_train_station_entries_fy_2024_2025.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>monthly_clean <span class="ot">&lt;-</span> monthly_raw <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(metropolitan_train, metropolitan_tram, metropolitan_bus,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                  regional_train, regional_coach, regional_bus),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">parse_number</span>(<span class="fu">as.character</span>(.)))) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(metropolitan_train, metropolitan_tram, metropolitan_bus,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>             regional_train, regional_coach, regional_bus),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"mode"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"boardings"</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stations_clean <span class="ot">&lt;-</span> stations_raw <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fin_year <span class="sc">==</span> <span class="st">"FY24-25"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(pax_annual, pax_weekday, pax_norm_weekday, pax_sch_hol_weekday,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  pax_saturday, pax_sunday, pax_pre_am_peak, pax_am_peak,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                  pax_interpeak, pax_pm_peak, pax_pm_late),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">parse_number</span>(<span class="fu">as.character</span>(.))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(monthly_clean, <span class="st">"data/processed/monthly_clean.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(stations_clean, <span class="st">"data/processed/stations_clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mode_summary <span class="ot">&lt;-</span> monthly_clean <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mode) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_boardings =</span> <span class="fu">sum</span>(boardings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_boardings))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mode_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  mode               total_boardings
-  &lt;chr&gt;                        &lt;dbl&gt;
-1 metropolitan_train      1366415976
-2 metropolitan_tram       1128683201
-3 metropolitan_bus         797593599
-4 regional_train           146151590
-5 regional_bus              92905490
-6 regional_coach             8709111</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>top_stations <span class="ot">&lt;-</span> stations_clean <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(pax_annual)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(stop_name, pax_annual, pax_weekday, pax_saturday, pax_sunday) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>top_stations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 5
-   stop_name         pax_annual pax_weekday pax_saturday pax_sunday
-   &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;
- 1 Flinders Street     19633300       60900        43150      31350
- 2 Southern Cross      14696050       47600        26500      19550
- 3 Melbourne Central   11876900       38300        20650      17250
- 4 Parliament           6344650       22350         6450       4750
- 5 Footscray            4383950       14000         8850       5800
- 6 Richmond             3712750        9850        13000       8850
- 7 Flagstaff            3445200       12350         2900       2200
- 8 Caulfield            3205100        9600         8250       5600
- 9 South Yarra          3199050       10350         5900       4100
-10 Box Hill             2648350        8350         5350       4100</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mode_summary, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mode, total_boardings), <span class="at">y =</span> total_boardings, <span class="at">fill =</span> mode)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Total boardings"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-mode-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mode-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Total public transport boardings by mode in Victoria.
+</figcaption>
+<div aria-describedby="tbl-mode-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="report_files/figure-html/mode-plot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Total public transport boardings by mode across the monthly Victorian dataset.</figcaption>
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">mode</th>
+<th style="text-align: left;">total_boardings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Metropolitan Train</td>
+<td style="text-align: left;">1,366,415,976</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metropolitan Tram</td>
+<td style="text-align: left;">1,128,683,201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metropolitan Bus</td>
+<td style="text-align: left;">797,593,599</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Regional Train</td>
+<td style="text-align: left;">146,151,590</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Regional Bus</td>
+<td style="text-align: left;">92,905,490</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Regional Coach</td>
+<td style="text-align: left;">8,709,111</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-top-stations" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-top-stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Top 10 Melbourne metropolitan train stations by annual passenger entries in FY2024-25.
+</figcaption>
+<div aria-describedby="tbl-top-stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">stop_name</th>
+<th style="text-align: left;">pax_annual</th>
+<th style="text-align: left;">pax_weekday</th>
+<th style="text-align: left;">pax_saturday</th>
+<th style="text-align: left;">pax_sunday</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Flinders Street</td>
+<td style="text-align: left;">19,633,300</td>
+<td style="text-align: left;">60,900</td>
+<td style="text-align: left;">43,150</td>
+<td style="text-align: left;">31,350</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Southern Cross</td>
+<td style="text-align: left;">14,696,050</td>
+<td style="text-align: left;">47,600</td>
+<td style="text-align: left;">26,500</td>
+<td style="text-align: left;">19,550</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Melbourne Central</td>
+<td style="text-align: left;">11,876,900</td>
+<td style="text-align: left;">38,300</td>
+<td style="text-align: left;">20,650</td>
+<td style="text-align: left;">17,250</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Parliament</td>
+<td style="text-align: left;">6,344,650</td>
+<td style="text-align: left;">22,350</td>
+<td style="text-align: left;">6,450</td>
+<td style="text-align: left;">4,750</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Footscray</td>
+<td style="text-align: left;">4,383,950</td>
+<td style="text-align: left;">14,000</td>
+<td style="text-align: left;">8,850</td>
+<td style="text-align: left;">5,800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Richmond</td>
+<td style="text-align: left;">3,712,750</td>
+<td style="text-align: left;">9,850</td>
+<td style="text-align: left;">13,000</td>
+<td style="text-align: left;">8,850</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Flagstaff</td>
+<td style="text-align: left;">3,445,200</td>
+<td style="text-align: left;">12,350</td>
+<td style="text-align: left;">2,900</td>
+<td style="text-align: left;">2,200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Caulfield</td>
+<td style="text-align: left;">3,205,100</td>
+<td style="text-align: left;">9,600</td>
+<td style="text-align: left;">8,250</td>
+<td style="text-align: left;">5,600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Yarra</td>
+<td style="text-align: left;">3,199,050</td>
+<td style="text-align: left;">10,350</td>
+<td style="text-align: left;">5,900</td>
+<td style="text-align: left;">4,100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Box Hill</td>
+<td style="text-align: left;">2,648,350</td>
+<td style="text-align: left;">8,350</td>
+<td style="text-align: left;">5,350</td>
+<td style="text-align: left;">4,100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mode-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mode-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-mode-summary-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mode-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Total public transport boardings by mode across the monthly Victorian dataset.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="results" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
+<p>This analysis shows that there are significant variations in public transport use by Victorians. Rail continued to be the primary mode of public transport in Victoria, as evidenced by the highest total amount of people using the train network, as seen in Table @tbl-mode-summary and Figure @fig-mode-plot. The next most popular mode was the metropolitan tram system, and then followed the metropolitan bus system. The share of regional transport modes in total mode share of boardings was much less than the rest, indicating high population and travel density in metropolitan Melbourne.</p>
+<p>The station-level analysis also shows that the activity of passengers is highly skewed towards a small number of central city stations. The highest annual passenger numbers for Flinders Street, Southern Cross and Melbourne Central were seen consistently throughout the year (Table @tbl-top-stations). These stations serve as key hubs for interchanging passengers and are important to the broader transportation network.</p>
+<p>Figure @fig-trends illustrates the effect of the COVID-19 pandemic on the demand for public transport. Patronage on all transport modes suffered a marked drop in 2020 and settled back during the year. The patronage of metropolitan train and tram services have increased more strongly since the pandemic has started, but the service continues to be below pre-pandemic levels, indicating that travel behaviour and commuting patterns have altered over time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-trends" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-trends-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Monthly public transport boardings by mode in Victoria (2018–2025), showing the sharp decline during COVID-19 in 2020 and the subsequent recovery. Metropolitan train remains the dominant mode throughout the period.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="discussion-conclusion-and-recommendations" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Discussion, Conclusion and Recommendations</h1>
+<section id="discussion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
+<p>The results highlight that public transport demand is skewed towards the metropolitan area, including within Melbourne’s train system. Metropolitan train services are dominant, as they play an important role in commuting, education and business trips. The success of tram services is also evident and contributes to the provision of public transport, which is particularly important in cities with high population density where private transport may be less feasible.</p>
+<p>The results for the individual stations indicate that the most suitable station for investment should be the station seeing the greatest passenger demand. Patronage has been high at all three stations at Flinders Street, Southern Cross and Melbourne Central, which suggests that all three stations are essential nodes in the network. Bulk investments that seek to enhance accessibility, passenger flow, service frequency and the capacity of the infrastructure at these sites are likely to have a high number of users as beneficiaries.</p>
+<p>COVID-19 pandemic’s long-term impact is also considered. Patronage has bounced back significantly since 2020, but is still not back to historical levels. This could be due to growing remote and hybrid working patterns, changes in travel habits and population movements. This means that future planning needs to take these trends in travel demand into account, and still build infrastructure that meets the demand and thus the requirements of the passengers.</p>
 </section>
-<section id="references" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> References</h1>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
+<p>This study analyzed public transport usage throughout Victoria based on public transport boardings data from across the state provided on a monthly basis and metropolitan train station entry data. The results reveal that the mode of public transport being the most used is the metro train, followed by trams and buses. Passenger numbers are concentrated at a small number of stations around the centre of Melbourne, including Flinders Street, Southern Cross and Melbourne Central.</p>
+<p>In addition, the analysis highlights the substantial impact of COVID-19 and indicates that patronage is continuing to recover. These results indicate that the transport investment planning should focus on high-demand modes and locations, and be watched closely for transport pattern changes in the future. Investing in specific corridors with the highest passenger numbers will help to maximise the efficiency of the network, while providing a better passenger experience and contributing to sustainable transport growth in Victoria.</p>
+</section>
+<section id="recommendations" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Recommendations</h1>
+<p>Based on the analysis, we recommend the following:</p>
+<ol type="1">
+<li><strong>Focus investment on high-demand stations such as Flinders Street, Southern Cross and Melbourne Central</strong>, where passenger volumes are significantly higher than other stations on the network. These stations serve as major transport hubs and play a critical role in connecting passengers across metropolitan Melbourne. Investments in station capacity, accessibility improvements, passenger amenities and crowd management measures would help improve the overall passenger experience while supporting future growth in demand.</li>
+<li><strong>Improve frequency and reliability on metropolitan train lines</strong>, as this is the mode most used by Victorians and has the greatest potential impact on overall network performance. The analysis showed that metropolitan trains account for the largest share of public transport patronage, highlighting their importance within Victoria’s transport system. Enhancing service frequency, reducing delays and improving network reliability could encourage greater public transport usage and improve commuter satisfaction.</li>
+<li><strong>Track patronage recovery over time across all modes</strong> to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions. The results demonstrated a significant decline in patronage during the COVID-19 pandemic followed by a gradual recovery. Continued monitoring of passenger trends will allow transport authorities to identify long-term changes in travel behaviour and make evidence-based decisions regarding future service planning and infrastructure investment.</li>
+</ol>
+</section>
+<section id="references" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> References</h1>
 <ol type="1">
 <li>Monthly public transport patronage by mode. Victorian open data. <a href="https://opendata.transport.vic.gov.au/dataset/monthly-public-transport-patronage-by-mode">link</a>.</li>
 <li>Annual metropolitan train station patronage (station entries). Victorian open data. <a href="https://opendata.transport.vic.gov.au/dataset/annual-metropolitan-train-station-patronage-station-entries">link</a>.</li>
