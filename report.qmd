@@ -54,7 +54,7 @@ Both datasets were cleaned and saved in the data/processed folder. Data processi
 
 ## Analysis
 
-To compare patronage across modes, total boardings were summed by mode across the full dataset. As shown in @tbl-mode-summary, metropolitan train recorded the highest total boardings over the study period followed by metropolitan tram and metropolitan bus. Regional services made up a much smaller share of total patronage. To identify the busiest stations in the metropolitan train network, stations were ranked by total annual entries for 2024-2025. @tbl-top-stations shows the top busiest stations with Flinder Street, Southern Cross and Melbourne Central recording significantly higher passenger volumes than all other stations. A bar chart summarising total boardings by mode is presented in @fig-mode-plot to provide a visual comparison across the network.
+To compare patronage across modes, total boardings were summed by mode across the full dataset. As shown in @tbl-mode-summary, metropolitan train recorded the highest total boardings over the study period followed by metropolitan tram and metropolitan bus. Regional services made up a much smaller share of total patronage. To identify the busiest stations in the metropolitan train network, stations were ranked by total annual entries for 2024-2025. @tbl-top-stations shows the top busiest stations with Flinder Street, Southern Cross and Melbourne Central recording significantly higher passenger volumes than all other stations. A bar chart summarising total boardings by mode is presented in @fig-mode-summary to provide a visual comparison across the network.
 
 ```{r setup}
 #| label: setup
@@ -151,11 +151,11 @@ ggplot(mode_summary, aes(x = reorder(mode, total_boardings), y = total_boardings
 
 # Results
 
-This analysis shows that there are significant variations in public transport use by Victorians. Rail continued to be the primary mode of public transport in Victoria, as evidenced by the highest total amount of people using the train network, as seen in Table \@tbl-mode-summary and Figure \@fig-mode-plot. The next most popular mode was the metropolitan tram system, and then followed the metropolitan bus system. The share of regional transport modes in total mode share of boardings was much less than the rest, indicating high population and travel density in metropolitan Melbourne.
+This analysis shows that there are significant variations in public transport use by Victorians. Rail continued to be the primary mode of public transport in Victoria, as evidenced by the highest total amount of people using the train network, as seen in Table @tbl-mode-summary and Figure @fig-mode-summary. The next most popular mode was the metropolitan tram system, and then followed the metropolitan bus system. The share of regional transport modes in total mode share of boardings was much less than the rest, indicating high population and travel density in metropolitan Melbourne.
 
-The station-level analysis also shows that the activity of passengers is highly skewed towards a small number of central city stations. The highest annual passenger numbers for Flinders Street, Southern Cross and Melbourne Central were seen consistently throughout the year (Table \@tbl-top-stations). These stations serve as key hubs for interchanging passengers and are important to the broader transportation network.
+The station-level analysis also shows that the activity of passengers is highly skewed towards a small number of central city stations. The highest annual passenger numbers for Flinders Street, Southern Cross and Melbourne Central were seen consistently throughout the year (Table @tbl-top-stations). These stations serve as key hubs for interchanging passengers and are important to the broader transportation network.
 
-Figure \@fig-trends illustrates the effect of the COVID-19 pandemic on the demand for public transport. Patronage on all transport modes suffered a marked drop in 2020 and settled back during the year. The patronage of metropolitan train and tram services have increased more strongly since the pandemic has started, but the service continues to be below pre-pandemic levels, indicating that travel behaviour and commuting patterns have altered over time.
+Figure @fig-trends illustrates the effect of the COVID-19 pandemic on the demand for public transport. Patronage on all transport modes suffered a marked drop in 2020 and settled back during the year. The patronage of metropolitan train and tram services have increased more strongly since the pandemic has started, but the service continues to be below pre-pandemic levels, indicating that travel behaviour and commuting patterns have altered over time.
 
 ```{r fig-trends}
 #| label: fig-trends
