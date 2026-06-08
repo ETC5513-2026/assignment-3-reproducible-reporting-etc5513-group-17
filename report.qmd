@@ -200,6 +200,12 @@ In addition, the analysis highlights the substantial impact of COVID-19 and indi
 
 # Recommendations
 
+Based on the analysis, we recommend the following:
+
+1.  **Focus investment on high-demand stations such as Flinders Street, Southern Cross and Melbourne Central**, where passenger volumes are significantly higher than other stations on the network. These stations serve as major transport hubs and play a critical role in connecting passengers across metropolitan Melbourne. Investments in station capacity, accessibility improvements, passenger amenities and crowd management measures would help improve the overall passenger experience while supporting future growth in demand.
+2.  **Improve frequency and reliability on metropolitan train lines**, as this is the mode most used by Victorians and has the greatest potential impact on overall network performance. The analysis showed that metropolitan trains account for the largest share of public transport patronage, highlighting their importance within Victoria’s transport system. Enhancing service frequency, reducing delays and improving network reliability could encourage greater public transport usage and improve commuter satisfaction.
+3.  **Track patronage recovery over time across all modes** to understand whether demand has permanently shifted or is still recovering before making major decisions about service cuts or expansions. The results demonstrated a significant decline in patronage during the COVID-19 pandemic followed by a gradual recovery. Continued monitoring of passenger trends will allow transport authorities to identify long-term changes in travel behaviour and make evidence-based decisions regarding future service planning and infrastructure investment.
+
 # References
 
 1.  Monthly public transport patronage by mode. Victorian open data. [link](https://opendata.transport.vic.gov.au/dataset/monthly-public-transport-patronage-by-mode).
