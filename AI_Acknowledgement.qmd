@@ -1,0 +1,58 @@
+---
+title: "AI Declaration"
+format:
+  html: default
+  pdf: default
+---
+
+# AI Acknowledgement
+
+This assignment was completed as a group project. Generative AI tools were utilised as learning and productivity aids to ease understanding of concepts, software workflows, report presentation and writing refinement.
+
+All data collection, data cleaning, analysis, visualisations, interpretation of results and final decisions about content were still the responsibility of the group members.
+
+## (i) Generating ideas, explanations and workflow guidance
+
+We used AI to assist with understanding technical concepts and workflows related to the assignment, including:
+
+-   Understanding Git and GitHub workflows for conflict resolution and synchronisation of repository changes.
+
+-   Understanding Quarto document structure, table captions and cross-referencing.
+
+-   Understanding data transformation concepts such as wide and long data formats, data cleaning workflows and reproducible reporting practices.
+
+-   Understanding RevealJS presentation design and reproducible presentation development.
+
+Example prompts included:
+
+-   "How do I resolve merge conflicts in GitHub projects?"
+
+-   "How do I add captions and cross references to tables in Quarto?"
+
+-   "How can I make a reproducible RevealJS presentation from a Quarto report?"
+
+-   "Explain the difference between wide and long data formats in R."
+
+## (ii) Writing refinement and presentation support
+
+We used AI to improve the clarity, structure and readability of report sections and presentation content.
+
+Example prompts included:
+
+-   "How to improve the grammar and academic tone of the methodology section."
+
+-   "How to rewrite recommendation in a more professional style."
+
+AI-generated suggestions were reviewed, edited and adapted by the group before inclusion in the final report and presentation.
+
+## (iii) Coding assistance and troubleshooting
+
+We used AI to help understand and troubleshoot R, Quarto and Git-related issues encountered during the project.
+
+Example prompts included:
+
+-   "Why is my ggplot chart not appearing in a RevealJS presentation?"
+
+-   "How do I push local changes to a GitHub repository?"
+
+The final code, analysis outputs, visualisations and interpretations were reviewed and validated by the project team before submission.
