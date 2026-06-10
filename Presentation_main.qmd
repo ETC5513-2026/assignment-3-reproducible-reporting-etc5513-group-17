@@ -10,6 +10,8 @@ format:
     theme: simple
     slide-number: true
     transition: fade
+    incremental: false
+    smaller: true
     title-slide-attributes:
       data-background-color: "#f7f9fb"
 execute:
@@ -25,6 +27,10 @@ library(tidyverse)
 library(janitor)
 library(readr)
 library(knitr)
+library(ggplot2)
+library(scales)
+library(stringr)
+library(lubridate)
 
 monthly_clean <- read_csv("data/processed/monthly_clean.csv")
 stations_clean <- read_csv("data/processed/stations_clean.csv")
@@ -34,132 +40,99 @@ top_stations <- stations_clean |>
 
 mode_summary <- monthly_clean |>
   group_by(mode) |>
-  summarise(total_boardings = sum(boardings))
-```
-
-```{r}
-#| label: setup
-#| include: false
-
-library(tidyverse)
-library(readr)
-library(ggplot2)
-library(scales)
-library(stringr)
-
-monthly_clean <- read_csv("data/processed/monthly_clean.csv")
-
-mode_summary <- monthly_clean |>
-  group_by(mode) |>
   summarise(total_boardings = sum(boardings, na.rm = TRUE), .groups = "drop")
 ```
 
-# Problem Statement
+## Problem and questions
 
-## Why is this important?
+:::: {.columns}
+::: {.column width="55%"}
+### Why this matters
 
--   Public transport is critical for mobility across Victoria.
--   Government investment decisions should be based on actual demand.
--   Understanding passenger behaviour helps improve:
-    -   Capacity
-    -   Reliability
-    -   Passenger experience
+- Public transport supports mobility, access, and economic activity across Victoria.
+- Investment decisions should be guided by observed passenger demand.
+- Understanding demand by **mode** and **location** helps target upgrades where they will have the greatest effect.
+:::
 
-## Research Questions
+::: {.column width="45%"}
+### Research questions
 
-1.  Which public transport modes are most used in Victoria?
-2.  Which train stations experience the highest demand?
-3.  Where should future investment be prioritised?
+1. Which public transport modes are most used in Victoria?
+2. Which metropolitan train stations have the highest demand?
+3. Where should future investment be prioritised?
+:::
+::::
 
-# Datasets
+## Datasets
 
-## Dataset 1
+:::: {.columns}
+::: {.column width="50%"}
+### Dataset 1: Monthly patronage
 
-Monthly Victorian public transport patronage
+- Victorian public transport boardings
+- Monthly observations from 2018 to 2025
+- Includes:
+  - Metropolitan train
+  - Metropolitan tram
+  - Metropolitan bus
+  - Regional train
+  - Regional bus
+  - Regional coach
+:::
 
--   2018–2025
--   Metropolitan train
--   Metropolitan tram
--   Metropolitan bus
--   Regional train
--   Regional bus
--   Regional coach
+::: {.column width="50%"}
+### Dataset 2: Station entries
 
-## Dataset 2
+- FY2024-25 metropolitan train station entries
+- Annual passenger entries by station
+- Used to identify highest-demand stations in Melbourne's network
+:::
+::::
 
-FY2024–25 Metropolitan Train Station Entries
+## Data preparation and methods
 
--   Passenger entries by station
--   Melbourne metropolitan network
--   Annual station-level demand
+:::: {.columns}
+::: {.column width="50%"}
+### Data preparation
 
-# Data Preparation
+- Standardised column names
+- Converted passenger counts to numeric values
+- Removed formatting inconsistencies
+- Reshaped monthly patronage data from wide to long format
+- Checked for missing values
+:::
 
-## Cleaning Steps
+::: {.column width="50%"}
+### Analysis approach
 
--   Standardised column names
--   Converted passenger counts to numeric values
--   Removed formatting inconsistencies
--   Checked missing values
+- Summed total boardings by mode across the study period
+- Ranked stations by annual passenger entries
+- Visualised:
+  - Total patronage by mode
+  - Monthly patronage trends over time
+:::
+::::
 
-## Transformation
+## Results: Mode usage
 
-Monthly patronage data:
+:::: {.columns}
+::: {.column width="38%"}
+### Key finding
 
-Wide format → Long format
+- **Metropolitan train** is the most used public transport mode in Victoria.
+- It is followed by metropolitan tram and metropolitan bus.
+- Regional services carry much smaller totals across the study period.
 
-Benefits:
+### Interpretation
 
--   Easier comparison across modes
--   Better visualisation
--   Improved reproducibility
+Rail investment is likely to affect the largest number of passengers overall.
+:::
 
-# Methodology
-
-## Mode Analysis
-
--   Summed total boardings by transport mode
--   Compared patronage across Victoria
-
-The monthly patronage dataset was aggregated to calculate the total number of boardings for each transport mode across the study period. This allowed us to identify which modes were used most frequently and compare their relative importance within Victoria's public transport network.
-
-## Station Analysis
-
--   Ranked stations by annual passenger entries
--   Identified highest-demand locations
-
-Station entry data was sorted and ranked according to annual passenger volumes. This analysis helped identify the busiest stations in Melbourne's metropolitan network and highlight locations where future infrastructure investment could provide the greatest benefit.
-
-## Visualisation
-
--   Patronage by mode
--   Monthly trends over time
-
-Visualisations were created using ggplot2 to communicate key patterns in the data. Bar charts were used to compare transport modes, while time-series plots were used to examine changes in patronage over time and assess the impact of events such as COVID-19.
-
-# Results: Transport Mode Usage
-
-## Key Finding
-
-Metropolitan Train is the most used transport mode in Victoria.
-
-Followed by:
-
-1.  Metropolitan Tram
-2.  Metropolitan Bus
-3.  Regional Services
-
-### Implication
-
-Investment in rail infrastructure has the greatest potential impact on overall network performance.
-
-# Results: Transport Mode Usage
-
+::: {.column width="62%"}
 ```{r}
-#| echo: false
 #| fig-width: 8
 #| fig-height: 4.5
-#| out-width: "75%"
+#| out-width: "100%"
 
 mode_summary |>
   mutate(mode = str_replace_all(mode, "_", " ") |> str_to_title()) |>
@@ -167,68 +140,101 @@ mode_summary |>
     x = reorder(mode, total_boardings),
     y = total_boardings
   )) +
-  geom_col() +
+  geom_col(fill = "#2C7FB8") +
   coord_flip() +
   scale_y_continuous(labels = comma) +
   labs(
     x = NULL,
-    y = "Total Boardings"
+    y = "Total boardings"
   ) +
   theme_minimal(base_size = 16)
 ```
+:::
+::::
 
-Metropolitan trains recorded the highest number of boardings, followed by metropolitan trams and buses. Regional transport modes accounted for a much smaller share of total patronage. These findings suggest that investment in metropolitan transport infrastructure would have the greatest impact on overall public transport users in Victoria.
+## Results: Busiest stations
 
-# Results: Busiest Stations
+:::: {.columns}
+::: {.column width="42%"}
+### Highest-demand stations
 
-## Top Stations
+- Flinders Street
+- Southern Cross
+- Melbourne Central
+- Parliament
+- Richmond
 
--   Flinders Street
--   Southern Cross
--   Melbourne Central
+These stations stand out as major demand hubs and are strong candidates for capacity and accessibility upgrades.
+:::
 
-These stations recorded substantially higher passenger volumes than other stations in the network.
-
-## Implication
-
-These locations should be prioritised for capacity and infrastructure upgrades.
-
+::: {.column width="58%"}
 ```{r}
 top_stations |>
   head(5) |>
-  select(stop_name, pax_annual) |>
+  select(Station = stop_name, `Annual entries` = pax_annual) |>
+  mutate(`Annual entries` = comma(`Annual entries`)) |>
   knitr::kable()
 ```
+:::
+::::
 
-# Results: Patronage Trends
+## Results: Patronage trends
 
-## COVID-19 Impact
+:::: {.columns}
+::: {.column width="35%"}
+### Trend over time
 
--   Significant drop in patronage during 2020
--   Recovery observed across all modes
--   Recovery remains incomplete
+- Patronage dropped sharply in 2020 during COVID-19.
+- Recovery occurred across all modes after the pandemic period.
+- Metropolitan trains and trams remained the dominant modes throughout.
 
-## Key Insight
+### Insight
 
-Travel behaviour appears to have changed following the pandemic.
+Travel demand recovered, but disruption changed usage patterns over time.
+:::
 
+::: {.column width="65%"}
 ```{r}
 monthly_clean |>
   mutate(
     date = make_date(year, month, 1),
     mode = str_replace_all(mode, "_", " ") |> str_to_title()
   ) |>
-  ggplot(
-    aes(
-      x = date,
-      y = boardings,
-      colour = mode
-    )
+  ggplot(aes(
+    x = date,
+    y = boardings,
+    colour = mode
+  )) +
+  geom_line(linewidth = 0.8) +
+  scale_y_continuous(labels = comma) +
+  labs(
+    x = NULL,
+    y = "Monthly boardings",
+    colour = "Mode"
   ) +
-  geom_line() +
-  theme_minimal()
+  theme_minimal(base_size = 13)
 ```
+:::
+::::
 
-Patronage across all transport modes fell dramatically during the COVID-19 period before gradually recovering. Metropolitan trains and trams consistently remained the most heavily used modes.
+## Key findings
 
-## 
+| Finding | Evidence | Implication |
+|---|---|---|
+| Metropolitan train is the most used mode | Highest total boardings across the study period | Rail improvements can benefit the most passengers |
+| Trams and buses also carry high demand | Metropolitan tram and bus rank next | Investment should remain multimodal |
+| Demand is concentrated at major stations | Top entries occur at central and interchange stations | Station upgrades should focus on high-volume hubs |
+| COVID-19 disrupted usage patterns | Clear decline in 2020 followed by recovery | Planning should account for changing travel behaviour |
+
+## Recommendations
+
+- Prioritise **metropolitan rail investment**, especially where high passenger volumes create crowding and reliability risks.
+- Target the busiest stations for upgrades such as capacity expansion, accessibility improvements, wayfinding, and passenger flow management.
+- Continue support for tram and bus networks, especially where they complement rail and improve first-mile/last-mile access.
+- Use ongoing patronage monitoring to update investment priorities as travel patterns continue to recover and evolve.
+
+## Conclusion
+
+- Public transport demand in Victoria is led by metropolitan rail, followed by trams and buses.
+- The busiest metropolitan stations should be focal points for near-term infrastructure investment.
+- A balanced strategy is strongest: invest heavily in rail hubs while maintaining strong multimodal network support.
